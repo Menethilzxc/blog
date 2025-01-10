@@ -9,7 +9,7 @@ function App() {
 		<Div>
 			<div>123</div>
 			<div>
-				<i className="fa fa-gamepad"></i>
+				<i className="fa fa-camera-retro"></i>
 			</div>
 		</Div>
 	);
