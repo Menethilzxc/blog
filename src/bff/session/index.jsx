@@ -1,1 +1,1 @@
-export * from './session/remove-comment';
+export * from '../session/remove-comment';

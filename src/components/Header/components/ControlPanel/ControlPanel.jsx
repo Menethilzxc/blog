@@ -1,35 +1,54 @@
 import { Link, useNavigate } from 'react-router-dom';
-import { Icon } from '../../../../components';
+import { useSelector, useDispatch } from 'react-redux';
+import { Icon, Button } from '../../../../components';
+import { ROLE } from '../../../../constants';
+import {
+	selectUserRole,
+	selectUserLogin,
+	selectUserSession,
+} from '../../../../selectors';
+import { logout } from '../../../../actions';
 import styled from 'styled-components';
 
 const RightAligned = styled.div`
 	display: flex;
 	justify-content: flex-end;
-`;
-
-const StyledLink = styled(Link)`
-	display: flex;
-	justify-content: center;
 	align-items: center;
-	font-size: 18px;
-	width: 100px;
-	height: 32px;
-	cursor: pointer;
-
-	border: 1px solid black;
-	border-radius: 5px;
-	&:hover {
-		background-color: #ddd;
-	}
 `;
 
+const UserName = styled.div`
+	font-size: 18px;
+	font-weight: bold;
+`;
+
+// eslint-disable-next-line react/prop-types
 const ControlPanelConteiner = ({ className }) => {
 	const navigate = useNavigate();
+	const dispatch = useDispatch();
+	const roleId = useSelector(selectUserRole);
+	const login = useSelector(selectUserLogin);
+	const session = useSelector(selectUserSession);
 
 	return (
 		<div className={className}>
 			<RightAligned>
-				<StyledLink to="/login">Войти</StyledLink>
+				{roleId === ROLE.GUEST ? (
+					<Button>
+						<Link to="/login">Войти</Link>
+					</Button>
+				) : (
+					<>
+						<UserName>{login}</UserName>
+
+						<Icon
+							to="/"
+							id="fa-sign-out"
+							margin="0 0 0 10px"
+							onClick={() => dispatch(logout(session))}
+							className="cursor-pointer"
+						/>
+					</>
+				)}
 			</RightAligned>
 			<RightAligned>
 				<div onClick={() => navigate(-1)} className="cursor-pointer">

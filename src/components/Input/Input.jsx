@@ -1,0 +1,22 @@
+import { forwardRef } from 'react';
+import styled from 'styled-components';
+
+// eslint-disable-next-line react/prop-types
+const InputContainer = forwardRef(({ className, ...props }, ref) => {
+	return <input className={className} {...props} ref={ref} />;
+});
+
+export const Input = styled(InputContainer)`
+	width: ${({ width = '100%' }) => width};
+	font-size: 18px;
+	height: 40px;
+	padding: 10px;
+	margin: 0 0 10px;
+	border: 1px solid #000;
+	border-radius: 5px;
+
+	&:focus {
+		box-shadow: 0px 0px 5px blue;
+		outline: none;
+	}
+`;
