@@ -101,7 +101,6 @@ const RegistrationContainer = ({ className }) => {
 					{...register('password', {
 						onChange: () => setServerError(null),
 					})}
-					style={{ marginBottom: '20px' }}
 				/>
 				<Input
 					className={className}

@@ -2,24 +2,17 @@
   "users": [
     {
       "id": "001",
-      "login": "Dmitry",
-      "password": "qwerty12",
-      "registed_at": "2050-01-11",
-      "role_id": "0"
+      "login": "dmitry",
+      "password": "123123",
+      "registed_at": "2050-01-11 07:00",
+      "role_id": 0
     },
     {
       "id": "2269",
       "login": "Ivan",
       "password": "123123",
       "registed_at": "2057-10-03 07:09",
-      "role_id": 2
-    },
-    {
-      "id": "7fe6",
-      "login": "ivan",
-      "password": "123123",
-      "registed_at": "2064-10-13 19:57",
-      "role_id": 2
+      "role_id": 1
     },
     {
       "id": "ba7b",
@@ -27,23 +20,30 @@
       "password": "qweqwe",
       "registed_at": "2060-05-27 11:56",
       "role_id": 2
+    },
+    {
+      "id": "a3ea",
+      "login": "Maksim",
+      "password": "123123",
+      "registed_at": "2037-12-15 00:16",
+      "role_id": 2
     }
   ],
   "roles": [
     {
-      "id": "0",
+      "id": 0,
       "name": "Администратор"
     },
     {
-      "id": "1",
+      "id": 1,
       "name": "Модератор"
     },
     {
-      "id": "2",
+      "id": 2,
       "name": "Читатель"
     },
     {
-      "id": "3",
+      "id": 3,
       "name": "Гость"
     }
   ],

@@ -45,15 +45,17 @@ const ControlPanelConteiner = ({ className }) => {
 							id="fa-sign-out"
 							margin="0 0 0 10px"
 							onClick={() => dispatch(logout(session))}
-							className="cursor-pointer"
 						/>
 					</>
 				)}
 			</RightAligned>
 			<RightAligned>
-				<div onClick={() => navigate(-1)} className="cursor-pointer">
-					<Icon to="/" id="fa-backward" margin="10px 0 0 0" />
-				</div>
+				<Icon
+					to="/"
+					id="fa-backward"
+					margin="10px 0 0 0"
+					onClick={() => navigate(-1)}
+				/>
 
 				<Link to="/post">
 					<Icon id="fa-file-text-o" margin="10px 0 0 17px" />
