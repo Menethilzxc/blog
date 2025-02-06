@@ -2,15 +2,18 @@ import { sessions } from '../sessions';
 import { getRoles } from '../api';
 import { ROLE } from '../constants';
 
-export const fetchRoles = async (userSession) => {
+export const fetchRoles = async (hash) => {
 	const accessRoles = [ROLE.ADMIN];
 
-	if (!sessions.access(userSession, accessRoles)) {
+	const access = await sessions.access(hash, accessRoles);
+
+	if (!access) {
 		return {
 			error: 'Доступ запрещён',
 			res: null,
 		};
 	}
+
 	const roles = await getRoles();
 
 	return {

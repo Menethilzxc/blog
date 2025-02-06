@@ -6,6 +6,6 @@ const H2Container = ({ children, className }) => {
 
 export const H2 = styled(H2Container)`
 	margin: 40px 0;
-	font-size: 32px;
+	font-size: ${({ size = '32px' }) => size};
 	font-weight: bold;
 `;

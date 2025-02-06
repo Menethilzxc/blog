@@ -29,6 +29,11 @@ const ControlPanelConteiner = ({ className }) => {
 	const login = useSelector(selectUserLogin);
 	const session = useSelector(selectUserSession);
 
+	const onLogout = () => {
+		dispatch(logout(session));
+		sessionStorage.removeItem('userData');
+	};
+
 	return (
 		<div className={className}>
 			<RightAligned>
@@ -44,7 +49,7 @@ const ControlPanelConteiner = ({ className }) => {
 							to="/"
 							id="fa-sign-out"
 							margin="0 0 0 10px"
-							onClick={() => dispatch(logout(session))}
+							onClick={onLogout}
 						/>
 					</>
 				)}
