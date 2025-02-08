@@ -22,6 +22,8 @@ export const Button = styled(ButtonContainer)`
 	border-radius: 5px;
 	opacity: ${({ disabled }) => (disabled ? '0.4' : '1')};
 	&:hover {
-		background-color: ${({ disabled }) => (disabled ? '' : '#ddd')};
+		background-color: ${({ disabled, color }) => (
+			disabled ? '' : '#ddd', disabled ? '#fff' : color
+		)};
 	}
 `;
