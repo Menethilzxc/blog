@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { useLayoutEffect, useRef, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { Input, Icon } from '../../../../components';
@@ -12,44 +12,55 @@ import styled from 'styled-components';
 const PostFormContainer = ({ className, post }) => {
 	const { id, title, imageUrl, content, publishedAt } = post;
 
-	const imageRef = useRef(null);
-	const titleRef = useRef(null);
+	const [imageUrlValue, setImageUrlValue] = useState(imageUrl);
+	const [titleValue, setTitleValue] = useState(title);
 	const contentRef = useRef(null);
+
+	useLayoutEffect(() => {
+		setImageUrlValue(imageUrl);
+		setTitleValue(title);
+	}, [imageUrl, title]);
 
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
 	const requestServer = useServerRequest();
 
 	const onSave = () => {
-		const newImageUrl = imageRef.current.value;
-		const newTitle = titleRef.current.value;
 		const newContent = sanitazeContent(contentRef.current.innerHTML);
 
 		dispatch(
 			savePostAsync(requestServer, {
 				id,
-				imageUrl: newImageUrl,
-				title: newTitle,
+				imageUrl: imageUrlValue,
+				title: titleValue,
 				content: newContent,
 			}),
-		).then(() => navigate(`/post/${id}`));
+		).then(({ id }) => navigate(`/post/${id}`));
 	};
+
+	const onImageChange = ({ target }) => setImageUrlValue(target.value);
+	const onTitleChange = ({ target }) => setTitleValue(target.value);
 
 	return (
 		<div className={className}>
 			<Input
-				ref={imageRef}
-				defaultValue={imageUrl}
+				value={imageUrlValue}
 				placeholder="Ссылка на изображение..."
+				onChange={onImageChange}
 			/>
-			<Input ref={titleRef} defaultValue={title} placeholder="Заголовок..." />
+			<Input
+				value={titleValue}
+				placeholder="Заголовок..."
+				onChange={onTitleChange}
+			/>
 			<SpecialPanel
+				id={id}
 				publishedAt={publishedAt}
 				margin="20px 0"
 				editButton={
 					<Icon
 						id="fa-floppy-o"
-						margin="0 10px 0 0"
+						margin="0 0 0 10px"
 						size="21px"
 						onClick={onSave}
 					/>
@@ -60,6 +71,7 @@ const PostFormContainer = ({ className, post }) => {
 				contentEditable={true}
 				suppressContentEditableWarning={true}
 				className="post-text"
+				placeholder="Поле для статьи"
 			>
 				{content}
 			</div>
@@ -73,9 +85,32 @@ export const PostForm = styled(PostFormContainer)`
 		margin: 0 20px 10px 0;
 		width: 280px;
 		height: 150px;
+		object-fit: cover;
+		border-radius: 10px;
 	}
 
 	& .post-text {
 		font-size: 18px;
+		min-height: 80px;
+		border: 1px solid #000;
+		border-radius: 5px;
+		padding: 10px;
+	}
+
+	& .post-text:focus {
+		box-shadow: 0px 0px 5px blue;
+		outline: none;
+	}
+
+	& .post-text::before {
+		content: 'Поле ввода текста для новой статьи...';
+		font-size: 18px;
+		opacity: 0.5;
+		position: absolute;
+		pointer-events: none;
+	}
+
+	& .post-text:not(:empty)::before {
+		content: '';
 	}
 `;
