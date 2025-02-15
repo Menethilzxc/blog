@@ -1,14 +1,17 @@
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Icon } from '../../../../../../components';
 import { removeCommentAsync, openModal, CLOSE_MODAL } from '../../../../../../actions';
 import { useServerRequest } from '../../../../../../hooks';
+import { selectUserRole } from '../../../../../../selectors';
 
 import styled from 'styled-components';
+import { ROLE } from '../../../../../../constants';
 
 // eslint-disable-next-line react/prop-types
 const CommentContainer = ({ className, postId, id, author, content, publishedAt }) => {
 	const dispatch = useDispatch();
 	const requestServer = useServerRequest();
+	const roleId = useSelector(selectUserRole);
 
 	const onCommentRemove = (id) => {
 		dispatch(
@@ -48,12 +51,16 @@ const CommentContainer = ({ className, postId, id, author, content, publishedAt 
 				</div>
 				<div className="comment-text">{content}</div>
 			</div>
-			<Icon
-				id="fa-trash-o"
-				margin="0 0 0 10px "
-				size="19px"
-				onClick={() => onCommentRemove(id)}
-			/>
+			{roleId === ROLE.ADMIN || roleId === ROLE.MODERATOR ? (
+				<Icon
+					id="fa-trash-o"
+					margin="0 0 0 10px "
+					size="19px"
+					onClick={() => onCommentRemove(id)}
+				/>
+			) : (
+				''
+			)}
 		</div>
 	);
 };

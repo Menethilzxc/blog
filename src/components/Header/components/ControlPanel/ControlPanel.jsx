@@ -38,7 +38,7 @@ const ControlPanelConteiner = ({ className }) => {
 		<div className={className}>
 			<RightAligned>
 				{roleId === ROLE.GUEST ? (
-					<Button>
+					<Button style={{ padding: '10px' }}>
 						<Link to="/login">Войти</Link>
 					</Button>
 				) : (
@@ -62,12 +62,18 @@ const ControlPanelConteiner = ({ className }) => {
 					onClick={() => navigate(-1)}
 				/>
 
-				<Link to="/post">
-					<Icon id="fa-file-text-o" margin="10px 0 0 17px" />
-				</Link>
-				<Link to="/users">
-					<Icon id="fa-users" margin="10px 0 0 17px" />
-				</Link>
+				{roleId === ROLE.ADMIN ? (
+					<>
+						<Link to="/post">
+							<Icon id="fa-file-text-o" margin="10px 0 0 17px" />
+						</Link>
+						<Link to="/users">
+							<Icon id="fa-users" margin="10px 0 0 17px" />
+						</Link>
+					</>
+				) : (
+					''
+				)}
 			</RightAligned>
 		</div>
 	);

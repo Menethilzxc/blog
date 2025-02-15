@@ -43,5 +43,6 @@ export const PostContent = styled(PostContentContainer)`
 
 	& .post-text {
 		font-size: 18px;
+		min-height: 400px;
 	}
 `;
