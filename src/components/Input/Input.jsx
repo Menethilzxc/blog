@@ -10,7 +10,7 @@ export const Input = styled(InputContainer)`
 	width: ${({ width = '100%' }) => width};
 	font-size: 18px;
 	height: 40px;
-	padding: 10px;
+	padding: ${({ padding = '10px' }) => padding};
 	margin: 0 0 10px;
 	border: 1px solid #000;
 	border-radius: 5px;

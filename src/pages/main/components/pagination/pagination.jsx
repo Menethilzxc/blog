@@ -37,7 +37,10 @@ export const Pagination = styled(PaginationContainer)`
 	display: flex;
 	justify-content: center;
 	margin: 0 0 20px;
-	padding: 0 35px;
+	position: absolute;
+	width: 100%;
+	bottom: 130px;
+	padding: 20px 35px;
 
 	& .current-page {
 		width: 100%;
