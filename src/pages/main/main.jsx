@@ -80,7 +80,6 @@ export const Main = styled(MainContainer)`
 	& .no-posts-found {
 		display: flex;
 		flex-direction: column;
-		color: red;
 		font-size: 30px;
 		text-align: center;
 		margin: 30px 0 0 0;

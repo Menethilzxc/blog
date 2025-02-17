@@ -7,7 +7,7 @@ export const fetchUsers = async (hash) => {
 
 	const access = await sessions.access(hash, accessRoles);
 
-	if (!access) {
+	if (!access || accessRoles !== ROLE.ADMIN) {
 		return {
 			error: 'Доступ запрещён',
 			res: null,
