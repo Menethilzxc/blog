@@ -3,9 +3,10 @@ import { Icon } from '../../../../../../components';
 import { removeCommentAsync, openModal, CLOSE_MODAL } from '../../../../../../actions';
 import { useServerRequest } from '../../../../../../hooks';
 import { selectUserRole } from '../../../../../../selectors';
+import { checkAccess } from '../../../../../../utils';
+import { ROLE } from '../../../../../../constants';
 
 import styled from 'styled-components';
-import { ROLE } from '../../../../../../constants';
 
 // eslint-disable-next-line react/prop-types
 const CommentContainer = ({ className, postId, id, author, content, publishedAt }) => {
@@ -25,6 +26,8 @@ const CommentContainer = ({ className, postId, id, author, content, publishedAt 
 			}),
 		);
 	};
+
+	const isAdminOrModerator = checkAccess([ROLE.ADMIN, ROLE.MODERATOR], roleId);
 
 	return (
 		<div className={className}>
@@ -51,15 +54,13 @@ const CommentContainer = ({ className, postId, id, author, content, publishedAt 
 				</div>
 				<div className="comment-text">{content}</div>
 			</div>
-			{roleId === ROLE.ADMIN || roleId === ROLE.MODERATOR ? (
+			{isAdminOrModerator && (
 				<Icon
 					id="fa-trash-o"
 					margin="0 0 0 10px "
 					size="19px"
 					onClick={() => onCommentRemove(id)}
 				/>
-			) : (
-				''
 			)}
 		</div>
 	);

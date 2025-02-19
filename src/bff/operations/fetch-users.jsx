@@ -4,10 +4,9 @@ import { ROLE } from '../constants';
 
 export const fetchUsers = async (hash) => {
 	const accessRoles = [ROLE.ADMIN];
-
 	const access = await sessions.access(hash, accessRoles);
 
-	if (!access || accessRoles !== ROLE.ADMIN) {
+	if (!access) {
 		return {
 			error: 'Доступ запрещён',
 			res: null,

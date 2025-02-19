@@ -48,11 +48,13 @@ const UserRowContainer = ({
 						onChange={onRoleChange}
 						className="cursor-pointer bg-gray-300"
 					>
-						{roles.map(({ id: roleId, name: roleName }) => (
-							<option key={roleId} value={roleId}>
-								{roleName}
-							</option>
-						))}
+						{roles
+							.filter(({ id }) => id !== '3')
+							.map(({ id: roleId, name: roleName }) => (
+								<option key={roleId} value={roleId}>
+									{roleName}
+								</option>
+							))}
 					</select>
 					<Icon
 						id="fa-floppy-o"
