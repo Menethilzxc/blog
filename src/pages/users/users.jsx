@@ -5,10 +5,8 @@ import { UserRow, TableHeader } from './components';
 import { useServerRequest } from '../../hooks';
 import { selectUserRole } from '../../selectors';
 import { checkAccess } from '../../utils';
-import { PROP_TYPE, ROLE } from '../../constants';
 
 import styled from 'styled-components';
-import PropTypes from 'prop-types';
 
 // eslint-disable-next-line react/prop-types
 const UsersContainer = ({ className }) => {
