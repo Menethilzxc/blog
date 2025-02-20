@@ -1,7 +1,8 @@
+import PropTypes from 'prop-types';
 import { forwardRef } from 'react';
 import styled from 'styled-components';
 
-// eslint-disable-next-line react/prop-types
+// eslint-disable-next-line react/prop-types, react/display-name
 const InputContainer = forwardRef(({ className, ...props }, ref) => {
 	return <input className={className} {...props} ref={ref} />;
 });
@@ -20,3 +21,7 @@ export const Input = styled(InputContainer)`
 		outline: none;
 	}
 `;
+
+Input.propTypes = {
+	width: PropTypes.string,
+};

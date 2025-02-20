@@ -1,6 +1,6 @@
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
-// eslint-disable-next-line react/prop-types
 const ButtonContainer = ({ className, children, disabled, ...props }) => {
 	return (
 		<button className={className} {...props} disabled={disabled}>
@@ -27,3 +27,8 @@ export const Button = styled(ButtonContainer)`
 		)};
 	}
 `;
+
+Button.propTypes = {
+	children: PropTypes.node.isRequired,
+	width: PropTypes.string,
+};

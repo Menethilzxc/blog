@@ -8,10 +8,12 @@ import { useServerRequest } from '../../../../hooks';
 import { sanitazeContent } from './utils';
 
 import styled from 'styled-components';
+import { PROP_TYPE } from '../../../../constants';
 
-const PostFormContainer = ({ className, post }) => {
-	const { id, title, imageUrl, content, publishedAt } = post;
-
+const PostFormContainer = ({
+	className,
+	post: { id, title, imageUrl, content, publishedAt },
+}) => {
 	const [imageUrlValue, setImageUrlValue] = useState(imageUrl);
 	const [titleValue, setTitleValue] = useState(title);
 	const contentRef = useRef(null);
@@ -114,3 +116,7 @@ export const PostForm = styled(PostFormContainer)`
 		content: '';
 	}
 `;
+
+PostForm.propTypes = {
+	post: PROP_TYPE.POST,
+};

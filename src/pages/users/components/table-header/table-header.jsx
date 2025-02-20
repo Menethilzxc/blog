@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 // eslint-disable-next-line react/prop-types
@@ -26,3 +27,7 @@ export const TableHeader = styled(TableHeaderContainer)`
 		width: auto;
 	}
 `;
+
+TableHeader.propTypes = {
+	children: PropTypes.node.isRequired,
+};

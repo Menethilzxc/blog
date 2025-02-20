@@ -3,9 +3,13 @@ import { H2, Icon } from '../../../../components';
 import { SpecialPanel } from '../special-panel/special-panel';
 
 import styled from 'styled-components';
+import { PROP_TYPE } from '../../../../constants';
 
-const PostContentContainer = ({ className, post }) => {
-	const { id, title, imageUrl, content, publishedAt } = post;
+const PostContentContainer = ({
+	className,
+	post: { id, title, imageUrl, content, publishedAt },
+}) => {
+	// const { id, title, imageUrl, content, publishedAt } = post;
 
 	const navigate = useNavigate();
 
@@ -47,3 +51,7 @@ export const PostContent = styled(PostContentContainer)`
 		margin: 0 0 50px 0;
 	}
 `;
+
+PostContent.propTypes = {
+	post: PROP_TYPE.POST,
+};

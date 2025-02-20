@@ -1,24 +1,19 @@
+import PropTypes from 'prop-types';
 import { useState } from 'react';
 import { Icon } from '../../../../components';
 import { TableRow } from '../table-row/table-row';
 import styled from 'styled-components';
 import { useServerRequest } from '../../../../hooks';
+import { PROP_TYPE } from '../../../../constants';
 
 // eslint-disable-next-line react/prop-types
 const UserRowContainer = ({
-	// eslint-disable-next-line react/prop-types
 	className,
-	// eslint-disable-next-line react/prop-types
 	id,
-	// eslint-disable-next-line react/prop-types
 	login,
-	// eslint-disable-next-line react/prop-types
 	registedAt,
-	// eslint-disable-next-line react/prop-types
 	roleId: userRoleId,
-	// eslint-disable-next-line react/prop-types
 	roles,
-	// eslint-disable-next-line react/prop-types
 	onUserRemove,
 }) => {
 	const [initialRoleId, setInitialRoleId] = useState(userRoleId);
@@ -77,3 +72,12 @@ export const UserRow = styled(UserRowContainer)`
 		font-size: 16px;
 	}
 `;
+
+UserRow.propTypes = {
+	id: PropTypes.string.isRequired,
+	login: PropTypes.string.isRequired,
+	registedAt: PropTypes.string.isRequired,
+	roleId: PROP_TYPE.ROLE_ID.isRequired,
+	roles: PropTypes.array.isRequired,
+	onUserRemove: PropTypes.func.isRequired,
+};
