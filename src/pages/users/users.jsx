@@ -5,6 +5,7 @@ import { UserRow, TableHeader } from './components';
 import { useServerRequest } from '../../hooks';
 import { selectUserRole } from '../../selectors';
 import { checkAccess } from '../../utils';
+import { ROLE } from '../../constants';
 
 import styled from 'styled-components';
 
