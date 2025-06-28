@@ -42,15 +42,15 @@
 ##  Интерфейс (добавь скриншоты, если есть)
 
 ### Главная 
-![Главная](./src/assets/main-preview.png.png)
+![Главная](./src/assets/main-preview.png)
 
-## Статья
-![Статья](./src/assets/page-preview.png.png)
+### Статья
+![Статья](./src/assets/page-preview.png)
 
-## Админка
-![Админка](./src/assets/admin-preview.png.png)
+### Админка
+![Админка](./src/assets/admin-preview.png)
 
-## Создание статьи
+### Создание статьи
 ![Создание статьи](./src/assets/new-paper-preview.png)
 
 ## Установка и запуск (локально)
